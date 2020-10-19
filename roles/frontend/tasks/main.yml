@@ -25,7 +25,7 @@
       dest: "{{ REMOTE_PATH }}"
       remote_src: yes
   
-  - name: remove old content
+  - name: remove artifact
     file:
       path: "{{ remote_artifact.dest }}"
       state: absent
