@@ -12,10 +12,10 @@
 
   - name: copy artifact to remote location
     copy:
-      src: /srv/myfiles/foo.conf
+      src: artifact.zip
       dest: "{{ REMOTE_PATH }}"
-      owner: foo
-      group: foo
+      owner: vagrant
+      group: vagrant
       mode: 0644
     register: remote_artifact
 
