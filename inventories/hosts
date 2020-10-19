@@ -3,3 +3,4 @@
 [CHONTAL2]
 192.168.0.101
 
+host_key_checking = false
