@@ -12,10 +12,7 @@ node {
 
   stage('download artifact') {
     withCredentials([usernamePassword(credentialsId: 'JFROG_CREDENTIALS', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD')]) {
-      sh(
-        script: """
-          curl -u "${JFROG_USERNAME}:${JFROG_PASSWORD}" -O "${ARTIFACT_URL}"
-        """)
+      sh(script: "curl -u${JFROG_USERNAME}:${JFROG_PASSWORD} -O '${ARTIFACT_URL}'")
     }
   }
 
