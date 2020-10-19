@@ -1,0 +1,37 @@
+---
+
+deploy_dir: /usr/local/banco/deploy/{{ microservice_name }}
+artifact_dir: /usr/local/banco/deploy/{{ microservice_name }}/{{ microservice_name }}.jar
+instances_dir: /usr/local/banco/deploy/{{ microservice_name }}/BOOT-INF/classes/deployment
+service_dir: /usr/local/banco/dfservices
+
+general_path: /usr/local/banco
+project_path: "{{ general_path }}/project"
+certs_path: "{{ general_path }}/certificates"
+logstash_path: "{{ general_path }}/logstash"
+deploy_path: "{{ general_path }}/deploy"
+java_path: "{{ general_path }}/java"
+local_path: "{{ general_path }}/local_conf"
+logs_path: "{{ general_path }}/logs"
+logstash_logs_path: "{{ logs_path }}/logstash"
+project_api_path: "{{ project_path }}/api"
+project_front_path: "{{ project_path }}/front"
+nginx_path: "{{ general_path }}/nginx"
+nginx_confd: "{{ nginx_path }}/conf.d"
+nginx_locations: "{{ nginx_confd }}/locations"
+tmp_path: "{{ general_path }}/tmp"
+dfservices_path: "{{ general_path }}/dfservices"
+lucene_path : "{{ tmp_path }}/lucene"
+backups_path: "{{ general_path }}/backups"
+
+
+backend_path: "{{ project_api_path }}/{{ microservice_name }}"
+properties_dir: "{{ deploy_dir }}/BOOT-INF/classes/deployment/{{ microservice_name }}"
+frontend_path: "{{ project_front_path }}/{{ microfront_target.stdout }}"
+dist_dir: "{{ deploy_dir }}/package/dist-{{ profile }}/"
+deploy_log_path: "{{ logs_path }}/deployment-history"
+
+deploy_secrets: "{{ secrets }}"
+deploy_properties: "{{ properties }}"
+
+...

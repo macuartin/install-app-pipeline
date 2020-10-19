@@ -1,0 +1,18 @@
+---
+
+- hosts: "{{ HOST }}"
+  vars_files:
+    - ./vars/main.yml
+  tasks:
+  
+    - import_role:
+        name: backend
+      tags:
+        - BACKEND
+
+    - import_role:
+        name: frontend
+      tags:
+        - FRONTEND
+
+...

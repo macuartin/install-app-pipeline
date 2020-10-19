@@ -1,0 +1,8 @@
+location {{ microfront_target.stdout }} {
+  root /usr/local/banco/project/front/;
+  try_files $uri $uri/ {{ microfront_target.stdout }}index.html =404;
+  index index.html index.htm Default.htm;
+
+  # Added redirect for Akamai
+  rewrite ^(/akamai/.*) /assets/$1 break;
+}
