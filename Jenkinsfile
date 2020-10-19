@@ -2,16 +2,11 @@
 
 def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
 
-node {
-  try {
+pipeline {
 
-    // stage('Verifiying Filesystem') {
-    //   wrap([$class: 'BuildUser']) {
-    //     currentBuild.displayName = "#${env.BUILD_NUMBER} - ${BUILD_USER_ID} - ${SERVICE} - ${HOST}"
-    //     sh "ansible-playbook -i ./inventories/hosts ./main.yml --tags 'filesystem' --extra-vars 'host=${HOST}'"
-    //   }
-    // }
+  agent any
 
+  stages {
     stage('download artifact') {
       withCredentials([usernamePassword(credentialsId: 'JFROG_CREDENTIALS', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD')]) {
         sh(script: "wget --user ${JFROG_USERNAME} --password ${JFROG_PASSWORD} ${ARTIFACT_URL} -O artifact.zip")
@@ -24,11 +19,11 @@ node {
         // sh "ansible-playbook -i ./inventories/hosts main.yml --tags '${COMPONENT}' --extra-vars 'HOST=${HOST} REMOTE_PATH=${REMOTE_PATH} SSH_USERNAME=${SSH_USERNAME} SSH_PASSWORD=${SSH_PASSWORD}'"
       }
     } 
+  }
 
-  } catch(Exception e) {
-    currentBuild.result = "FAILURE"
-    echo "Exception: ${e}"
-  } finally {
-    cleanWs()
+  post { 
+    always { 
+      cleanWs()
+    }
   }
 }
