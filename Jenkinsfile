@@ -14,7 +14,7 @@ node {
     withCredentials([usernamePassword(credentialsId: 'JFROG_CREDENTIALS', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD')]) {
       sh(
         script: """
-          curl -u ${JFROG_USERNAME}:${JFROG_PASSWORD} -O "${ARTIFACT_URL}"
+          curl -u${JFROG_USERNAME}:${JFROG_PASSWORD} -O -k "${ARTIFACT_URL}"
         """)
     }
   }
