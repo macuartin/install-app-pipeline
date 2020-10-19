@@ -19,7 +19,7 @@ node {
     }
 
     stage('deploy artifact') {
-      withCredentials([usernamePassword(credentialsId: 'SSH_CREDENTIALS', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD'), string(credentialsId: "${HOST}", variable: "PASSPHRASE")]) {
+      withCredentials([usernamePassword(credentialsId: 'SSH_CREDENTIALS', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
         sh "ansible-playbook -i ./inventories/hosts ./main.yml --tags '${COMPONENT}' --extra-vars 'ARTIFACT_URL=${ARTIFACT_URL} HOST=${HOST} REMOTE_PATH=${REMOTE_PATH} SSH_USERNAME=${SSH_USERNAME} SSH_PASSWORD=${SSH_PASSWORD}'"
       }
     } 
