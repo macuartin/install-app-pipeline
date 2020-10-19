@@ -24,23 +24,10 @@
       src: "{{ remote_artifact.dest }}"
       dest: "{{ REMOTE_PATH }}"
       remote_src: yes
-
-  # - name: Copy {{ microfront_name.stdout }} to {{ frontend_path }}
-  #   copy:
-  #     src: "{{ dist_dir }}"
-  #     dest: "{{ frontend_path }}"
-  #     remote_src: yes
-  #     owner: dfrunner
-  #     group: digital
-  #     mode: '0755'
-  #     directory_mode: yes
-  #     force: yes
-
-  - name: chmod {{ microfront_name.stdout }} directory {{ dist_dir }}
-    shell: "chmod 755 -R {{ dist_dir }}"
-
-  - name: Copy {{ microfront_name.stdout }} to {{ frontend_path }}.
-    shell: "cp -R --force {{ dist_dir }}/* {{ frontend_path }}"
   
+  - name: remove old content
+    file:
+      path: "{{ remote_artifact.dest }}"
+      state: absent
 
 ...
