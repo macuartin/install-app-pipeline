@@ -14,7 +14,7 @@ node {
 
     stage('download artifact') {
       withCredentials([usernamePassword(credentialsId: 'JFROG_CREDENTIALS', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD')]) {
-        sh(script: "wget --user ${JFROG_USERNAME} --password ${JFROG_PASSWORD} ${ARTIFACT_URL}")
+        sh(script: "wget --user ${JFROG_USERNAME} --password ${JFROG_PASSWORD} ${ARTIFACT_URL} -O artifact.zip")
       }
     }
 
