@@ -18,7 +18,7 @@ pipeline {
     stage('deploy artifact') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'SSH_CREDENTIALS', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
-          sh "ansible-playbook -i ./inventories/hosts main.yml --tags '${COMPONENT}' --extra-vars 'HOST=${HOST} REMOTE_PATH=${REMOTE_PATH} SSH_USERNAME=${SSH_USERNAME} SSH_PASSWORD=${SSH_PASSWORD}'"
+          sh "ansible-playbook -i ./inventories/hosts main.yml --tags '${COMPONENT}' --extra-vars 'HOST=${HOST} REMOTE_PATH=${REMOTE_PATH} ansible_user=${SSH_USERNAME} ansible_password=${SSH_PASSWORD}'"
         }
       }
     } 
