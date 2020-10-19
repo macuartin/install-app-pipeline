@@ -2,7 +2,7 @@
 
 def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
 
-node {
+node("principal") {
   try {
 
     // stage('Verifiying Filesystem') {
